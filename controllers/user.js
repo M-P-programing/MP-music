@@ -54,7 +54,41 @@ function saveUser(req,res){
 		res.status(200).send({message: "Insert password"});
 	}
 }
+
+function loginUser(req,res){
+	var params = req.body;
+
+	var email = params.email;
+	var password = params.password;
+
+	User.findOne({email: email.toLowerCase()}, (err, user) =>{
+		if(err){
+			res.status(500).send({message: "Database request error"});
+		}else{
+			if(!user){
+				res.status(404).send({message: "User doesn't exist"});
+			}else{
+				//Check password
+
+				bcrypt.compare(password, user.password, function(err, check){
+					if(check){
+						//Return user data legged in
+						if(params.gethash){
+							// Return jwt token
+
+						}else{
+							res.status(200).send({user});
+						}
+					}else{
+						res.status(404).send({message: "Wrong password"});
+					}
+				});
+			}
+		}
+	});
+}
 module.exports = {
 	pruebas,
-	saveUser
+	saveUser,
+	loginUser
 };
