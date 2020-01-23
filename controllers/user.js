@@ -109,9 +109,38 @@ function updateUser(req, res){
 		
 	});
 }
+
+function uploadImage(req, res){
+	var userId = req.params.id;
+	var file_name = 'Image not uploaded';
+
+	if(req.files){
+		var file_path = req.files.image.path;
+		var file_split = file_path.split('\/');
+		var file_name = file_split[2];
+		var ext_split = file_name.split('\.');
+		var file_ext = ext_split[1];
+
+		if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'gif' ){
+			
+			User.findByIdAndUpdate(userId, {image: file_name}, (err,userUpdated) => {
+				if(!userUpdated){
+					res.status(404).send({message: "Something went wrong. User profile wasn't updated."});
+				}else{
+					res.status(200).send({user: userUpdated});
+				}
+			});
+		}else{
+			res.status(200).send({message: 'File extension is not correct'});
+		}
+	}else{
+		res.status(200).send({message: 'No image was uploaded'});
+	}
+}
 module.exports = {
 	pruebas,
 	saveUser,
 	loginUser,
-	updateUser
+	updateUser,
+	uploadImage
 };
