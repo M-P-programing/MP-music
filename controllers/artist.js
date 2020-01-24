@@ -38,7 +38,7 @@ function saveArtist(req,res){
 			res.status(500).send({message: 'Error saving artist'});
 		}else{
 			if(!artistStored){
-				res.status(404).send({message: 'Something went wrong while saving the artist to the db'})
+				res.status(404).send({message: 'Something went wrong while saving the artist to the db'});
 			}else{
 				res.status(200).send({artist:artistStored});
 			}
@@ -71,9 +71,26 @@ function getArtists(req,res){
 	});
 }
 
+function updateArtist(req,res){
+	var artistId = req.params.id;
+	var update = req.body;
+
+	Artist.findByIdAndUpdate(artistId, update, (err, artistUpdated) =>{
+		if(err){
+			res.status(500).send({message: 'Error updating artist'});
+		}else{
+			if(!artistUpdated){
+				res.status(404).send({message: 'Something went wrong while updating the artist to the db'})
+			}else{
+				res.status(200).send({artist:artistUpdated});
+			}
+		}
+	});
+}
 
 module.exports = {
 	getArtist,
 	saveArtist,
-	getArtists
+	getArtists,
+	updateArtist
 }
