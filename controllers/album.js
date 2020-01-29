@@ -33,6 +33,8 @@ function saveAlbum(req,res){
 	album.image = 'null';
 	album.artist = params.artist;
 
+	console.log(params);
+
 	album.save((err,albumStored) =>{
 		if(err){
 			res.status(500).send({message: 'Error connecting to server'});
@@ -73,8 +75,26 @@ function getAlbums(req,res){
 	});
 }
 
+function updateAlbum(req,res){
+	var albumId = req.params.id;
+	var update = req.body;
+
+	Album.findByIdAndUpdate(albumId, update, (err,albumUpdated) => {
+		if(err){
+			res.status(500).send({message:'Server error'});
+		}else{
+			if(!albumUpdated){
+				res.status(404).send({message:'Album wasn\'t updated'});
+			}else{
+				res.status(200).send({album: albumUpdated});
+			}
+		}
+	});
+}
+
 module.exports = {
 	getAlbum,
 	saveAlbum,
-	getAlbums
+	getAlbums,
+	updateAlbum
 };
