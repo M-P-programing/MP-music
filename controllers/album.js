@@ -92,9 +92,35 @@ function updateAlbum(req,res){
 	});
 }
 
+function deleteAlbum(req,res){
+	var albumId = req.params.id;
+	Album.findByIdAndRemove(albumId, (err,albumRemoved)=>{
+		if(err){
+			res.status(500).send({message: 'Error deleting artist albums'});
+		}else{
+			if(!albumRemoved){
+				res.status(404).send({message: 'Something went wrong while deleting the artist albums from the db'});
+			}else{
+				Song.find({album:albumRemoved._id}).remove((err,songRemoved)=>{
+					if(err){
+						res.status(500).send({message: 'Error deleting albums song'});
+					}else{
+						if(!songRemoved){
+							res.status(404).send({message: 'Something went wrong while deleting the albums songs from the db'});
+						}else{
+							res.status(200).send({album:albumRemoved});
+						}
+					}
+				});
+			}
+		}
+	});
+}
+
 module.exports = {
 	getAlbum,
 	saveAlbum,
 	getAlbums,
-	updateAlbum
+	updateAlbum,
+	deleteAlbum
 };
