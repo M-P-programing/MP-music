@@ -1,1 +1,56 @@
-<h1>test</h1>
+ <!-- Front if you are logged in-->
+ <div *ngIf="identity" class="">
+ 	<p>Aside</p>
+ </div>
+<div class="clearfix"></div>
+<div  *ngIf="identity" class="">
+	<p>Estás logueado</p>
+</div>
+
+ <!-- Front if you are not logged in-->
+ <div class="wrapper" *ngIf="!identity">
+ 	<img src="assets/img/logo.png" alt="Logo" class="logo">
+	<div class="container-login">
+		<div class="login">
+			<h1>Login with your account</h1>
+			<form>
+				<p>
+					<label for="email">Email:</label>
+					<input type="text" required>
+				</p>
+				<p>
+					<label for="password">Password:</label>
+					<input type="password" required>
+				</p>
+				<input type="submit" value="Login" class="submit">
+			</form>
+		</div>
+	</div>
+	<div class="separator">
+		<p>Or</p>
+	</div>
+	<div class="container-register">
+		<div class="register">
+			<h1>Register</h1>
+			<form>
+				<p>
+					<label for="name">Name:</label>
+					<input type="text" required>
+				</p>
+				<p>
+					<label for="surname">Surname:</label>
+					<input type="text" required>
+				</p>
+				<p>
+					<label for="email">Email:</label>
+					<input type="text" required>
+				</p>
+				<p>
+					<label for="password">Password:</label>
+					<input type="password" required>
+				</p>
+				<input type="submit" value="Register" class="submit">
+			</form>
+		</div>
+	</div>
+ </div>

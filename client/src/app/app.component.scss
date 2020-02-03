@@ -1,0 +1,80 @@
+@import 'src/styles.scss';
+.wrapper{
+	margin-bottom: 100px;
+	.logo{
+		display: block;
+		margin:auto;
+		padding: 25px;
+		@media (max-width:$bp-medium){
+			width: 200px;
+		}
+	}
+	.container-login{
+		background-color: $main-color;
+		max-width: 800px;
+		margin:auto;
+		margin-top: 100px;
+		color: $white;
+		.login{
+			h1{
+				font-weight: 700;
+			}
+			text-align: center;
+			padding: 25px;
+			label, input{
+				display: block;
+				width: 100%;
+				text-align: center;
+			}
+			.submit{
+				width: 200px;
+				margin:auto;
+				background-color: $red;
+				border: 0;
+				color: $white;
+				padding: 10px;
+				cursor: pointer;
+				&:hover{
+					opacity: 0.8;
+				}
+			}
+		}
+	}
+	.separator{
+		color: $white;
+		text-align: center;
+		font-weight: 700;
+		text-transform: uppercase;
+		font-size: 30px;
+	}
+	.container-register{
+		background-color: $main-color;
+		max-width: 800px;
+		margin:auto;
+		color: $white;
+		.register{
+			h1{
+				font-weight: 700;
+			}
+			text-align: center;
+			padding: 25px;
+			label, input{
+				display: block;
+				width: 100%;
+				text-align: center;
+			}
+			.submit{
+				width: 200px;
+				margin:auto;
+				background-color: $red;
+				border: 0;
+				color: $white;
+				padding: 10px;
+				cursor: pointer;
+				&:hover{
+					opacity: 0.8;
+				}
+			}
+		}
+	}
+}

@@ -1,4 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-@import 'app/app.component.scss';
+/* Variables */
+
+/* Colors*/
+$main-color:#212121;
+$secondary-color:#121212;
+$red:#B22222;
+$white:#fff;
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap");
+$main-font:'Roboto Slab', serif;
+*{
+	font-family: $main-font;
+}
+
+
+
+/*  # Media queries breakpoints
+    Define the breakpoints at which your layout will change,
+    adapting to different screen sizes.*/
+
+
+$bp-tiny:                 320px !default;
+$bp-small:                500px !default;
+$bp-medium:               910px !default;
+$bp-large:                1100px !default;
+$bp-wide:                 1650px !default;
+
+
+
+/* Global styling */
+body{
+	background-color: $secondary-color;
+}
+
+button{
+	cursor: pointer;
+}
