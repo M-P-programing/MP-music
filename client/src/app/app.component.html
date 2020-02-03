@@ -13,14 +13,17 @@
 	<div class="container-login">
 		<div class="login">
 			<h1>Login with your account</h1>
-			<form>
+			<form #loginForm='ngForm' (ngSubmit)="onSubmit()">
 				<p>
 					<label for="email">Email:</label>
-					<input type="text" required>
+					<input #email='ngModel' name="email" [(ngModel)]="user.email" type="email" required>
+					<span *ngIf="!email.valid && email.touched">
+						Introduce a valid email.
+					</span>
 				</p>
 				<p>
 					<label for="password">Password:</label>
-					<input type="password" required>
+					<input #password='ngModel' name="password" [(ngModel)]="user.password" type="password" required>
 				</p>
 				<input type="submit" value="Login" class="submit">
 			</form>
@@ -43,7 +46,7 @@
 				</p>
 				<p>
 					<label for="email">Email:</label>
-					<input type="text" required>
+					<input type="email" required>
 				</p>
 				<p>
 					<label for="password">Password:</label>
